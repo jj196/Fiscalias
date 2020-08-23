@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from '@material-ui/core';
+import { Container, AppBar, Toolbar } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: '75%',
     maxWidth: '75%',
-    backgroundColor: theme.palette.background.paper,
   },
   chip: {
     margin: theme.spacing(0.5),
@@ -23,9 +22,16 @@ const useStyles = makeStyles((theme) => ({
   section2: {
     margin: theme.spacing(2),
   },
-  section3: {
+  section33: {
     margin: theme.spacing(3, 1, 1),
   },
+  encabezado:{
+    flexGrow: 1,
+  },
+  title: {
+    flexGrow: 1,
+
+  }
 
 }));
 
@@ -35,23 +41,30 @@ function App() {
   const classes = useStyles();
 
   return (
-    <Provider store={store}>
+    <div  >
+       
+        <Toolbar variant="dense">
+          {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <MenuIcon />
+          </IconButton> */}
+          {/* <Typography variant="h6" className={classes.title}>
+            News
+          </Typography>  */}
+          <img src="../logoMP.png"  /> 
+          
+          <Typography gutterBottom variant="h2" className={classes.title} align='center' color="primary">
+            <b>
+            Fiscalias
+            </b>
+        </Typography> 
+        </Toolbar> 
+    <Provider store={store}> 
       <Container fixed className={classes.root}>
-        <div className={classes.section1}>
-          <Grid container justify="center">
-            <Grid item xs>
-              <Typography gutterBottom variant="h3" align='center'>
-                Juan Jose Lima Ramirez
-            </Typography>
-              <Typography gutterBottom variant="h3">
-                Prueba CRUD Fiscalias
-            </Typography>
-            </Grid>
-          </Grid>
-        </div>
+        
         <Tabla3 />
       </Container>
     </Provider>
+    </div>
   );
 }
 

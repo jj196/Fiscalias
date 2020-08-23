@@ -7,6 +7,8 @@ import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 
 const theme = createMuiTheme({
     palette: {
@@ -37,6 +39,8 @@ const useStyles = makeStyles((theme) => ({
   }
 const Formulario =(props) =>{
     const [modalStyle] = React.useState(getModalStyle); 
+    const [open, setOpen] = React.useState(false);
+    const [Mensaje, setMensaje] = useState("");
     const [data, setData] = useState( 
         {ubicacion: props.data.ubicacion, numero : props.data.telefono, id:props.data.id}
         )
@@ -45,14 +49,24 @@ const Formulario =(props) =>{
     const handleChange = event =>{
         const {name, value} = event.target;
         setData({...data,[name]:value})  
-    }
+    }  
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setOpen(false);
+      };
     var boolId = false;
     var BtnOp = <Button
             variant="contained"
             color="primary"
             onClick={()=>{props.add(data.ubicacion, data.numero);
                 props.data.ubicacion= data.ubicacion;
-                props.data.telefono = data.numero;
+                props.data.telefono = data.numero; 
+                setMensaje("Fiscalia guardada");
+                setOpen(true);
             }} 
             className={classes.button}
             startIcon={<SaveIcon />}
@@ -66,7 +80,9 @@ const Formulario =(props) =>{
         color="primary"
         onClick={()=>{props.edit(data.id, data.ubicacion, data.numero);
             props.data.ubicacion= data.ubicacion;
-                props.data.telefono = data.numero;
+                props.data.telefono = data.numero; 
+                setMensaje("Fiscalia actualizada");
+                setOpen(true);
         }}
         className={classes.button}
         startIcon={<SaveIcon />}
@@ -75,6 +91,7 @@ const Formulario =(props) =>{
     </Button>} 
     
     return(
+        
         <Grid
             container
             direction="row"
@@ -83,7 +100,15 @@ const Formulario =(props) =>{
             style={modalStyle}
             className={classes.paper}
             >
-            <FormControl className={classes.margin}>
+            <FormControl className={classes.margin}> 
+                <Snackbar open={open} autoHideDuration={1000} onClose={handleClose}
+                anchorOrigin={{ vertical:'top', horizontal:'center' }}
+                >
+                    <Alert onClose={handleClose} severity="success">
+                    {Mensaje}
+                    </Alert>
+                </Snackbar>  
+            
                 <ThemeProvider theme={theme}> 
                     {boolId?(
                         <TextField
@@ -135,6 +160,7 @@ const Formulario =(props) =>{
                     startIcon={<DeleteIcon />}
                     onClick = {()=>{
                         setData({ubicacion: props.data.ubicacion, numero : props.data.telefono, id:props.data.id});
+                        
                     }}
                 >
                     cancelar
