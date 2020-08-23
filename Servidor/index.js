@@ -8,8 +8,7 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/',routers)
- 
-
+  
 let respuesta = {
     error: false,
     codigo: 200,
@@ -37,8 +36,6 @@ app.use(function(req, res, next) {
 });
 
 app.listen(3001, () => {
-    console.log("El servidor está inicializado en el puert 3001");
-    // consulta();
-  
+    console.log("El servidor está inicializado en el puert 3001");  
 });
    

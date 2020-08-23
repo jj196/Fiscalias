@@ -9,7 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import Fab from '@material-ui/core/Fab';
 import Formulario from './formulario';
 import { Modal } from '@material-ui/core';
-import { connect, useSelector, useDispatch } from 'react-redux'
+import { connect } from 'react-redux'
 import { addFiscalia, delFiscalia, getData, updateFiscalia } from '../actions/actions'
 
 
@@ -109,7 +109,6 @@ function TablePaginationActions(props) {
   
 function Tabla3(props) {
     const [open, setOpen] = React.useState(false);
-    const [data, setData] = React.useState(props.fiscalias);
     const [datos, setDatos] = useState({ telefono: '', id: '', ubicacion: '' });
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5); 
@@ -129,19 +128,12 @@ function Tabla3(props) {
         setOpen(false);
     };
 
-    // const store  = useSelector(state => ({
-    //     fiscalias: state.data.fiscalias
-    // }))
-
-    // const distPatch = useDispatch();
     const classes = useStyles();
 
 
     useEffect(() => {
         props.getData();
-        // getData();
     }, [])
-    console.log(props.fiscalias);
     return (
         <div>
             <Grid item container alignItems="flex-end" direction="column">

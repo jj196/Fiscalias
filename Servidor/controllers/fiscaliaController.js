@@ -1,21 +1,7 @@
 
 const db = require('../models');
 const {QueryTypes} = require('sequelize');
-
-db.sequelize.authenticate().then(()=>{
-    console.log("conectado a sql server");
-}).catch((error)=>{
-    console.log("error" + error);
-})
  
-
-let respuesta = {
-    error: false,
-    data : [],
-    mensaje: ''
-};
- 
-
 exports.DeleteFiscalia = async function(req, res){
     var resultado = await db.sequelize.query('exec DeleteFiscalia @Id = '+req.query.Id+';',{type : QueryTypes.DELETE});
     res.send({id: req.query.Id}); 
