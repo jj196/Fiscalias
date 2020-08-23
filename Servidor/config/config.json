@@ -1,0 +1,24 @@
+{
+  "development": {
+    "username": "sa",
+    "password": "50745692",
+    "database": "Prueba",
+    "host": "localhost",
+    "dialect": "mssql",
+    "port" : "1433"
+  },
+  "test": {
+    "username": "sa",
+    "password": "50745692",
+    "database": "Prueba",
+    "host": "127.0.0.1",
+    "dialect": "mssql"
+  },
+  "production": {
+    "username": "sa",
+    "password": "50745692",
+    "database": "Prueba",
+    "host": "127.0.0.1",
+    "dialect": "mssql"
+  }
+}
